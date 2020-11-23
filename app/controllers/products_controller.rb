@@ -4,7 +4,8 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    if params["filter_products"]
+    binding.pry  
+    if params["filter_products"] and !params["filter_products"]["catagory_id"].blank?
       @products = ProductCategory.find(params["filter_products"]["catagory_id"]).tag.products
     else  
       @products = Product.all.includes(:tags)
